@@ -24,6 +24,44 @@ def get_items():
     for each in file:
         items_list.append(each.replace("\n", "").split(","))
     file.close()
+    
+    
+#This is going to sort & list the items in side the items_list with correct format(count, name, price and priority)
+#If there is no item in the list (count = 0), then it will show "No required items"
+#Or it will show the total price of all the item with dollar sign
+def required_items():
+    items_list.sort(key=itemgetter(2, 0))
+    count = 0
+    price = 0
+    for a in items_list:
+        if(a[3]== "r"):
+            price += float(a[1])
+            print("{}. {} ${} ({})".format(count, a[0], float(a[1]), a[2]))
+    count += 1
+    if count == 0:
+        print("No required items")
+    else:
+        print("Total price ${}".format(price))
+
+#This is going to list & sort the items that are already completed
+#The completed items will be shown with correct format(count, name, price, priority)
+#If the count = 0 or there is no completed items it will show "No items completed
+#Or show the total price of the items inside the list
+def complete_items():
+    items_list.sort(key=itemgetter(2, 0))
+    count = 0
+    price = 0
+    for b in items_list:
+        if(b[3]=="c"):
+            price += float(b[1])
+            print("{}. {} ${} ({})".format(count, b[0], float(b[1]), b[2]))
+            count += 1
+    if count == 0:
+        print("No items completed")
+    else:
+        print(print("Total price ${}".format(price)))    
+    
+    
 items_list = []
 get_items()
 
