@@ -17,3 +17,19 @@ A - Add new item
 M - Mark an item as completed
 Q - Quit'''
     print(menu)
+
+#I created a text file with the csv inside named 'items.txt and open it as read only file. For each items in file replace with new line and split with a comma
+def get_items():
+    file = open("items.txt", "r")
+    for each in file:
+        items_list.append(each.replace("\n", "").split(","))
+    file.close()
+items_list = []
+get_items()
+
+#This is going to check the valid input to be lower and changer to lower case if not
+def change_lower(valid_input):
+    word = input(">>>").lower()
+    if word not in valid_input:
+        word = input(">>>").lower()
+    return change_lower()
