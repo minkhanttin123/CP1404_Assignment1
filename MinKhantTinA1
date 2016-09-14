@@ -3,7 +3,21 @@
     This a shopping list program which you can add, list, mark and see the items you need to shop
     https://github.com/minkhanttin123/CP1404_Assignment1/blob/master/MinKhantTinA1'''
 
-""""""
+
+#loading items pseudocode
+'''
+open items.txt as read only files
+separate the items in the csv file with ","
+format the items into correct format
+'''
+#completing items pseudocode
+'''
+if user input equals to c count will start from 0
+if count equal to 0
+show "No items completed"
+else show completed items
+show the total price of completed items
+'''
 
 
 print("Welcome to shopping list 1.0 by Min Khant Tin") #Welcome the user
