@@ -4,6 +4,7 @@ with open('items.txt') as n:
     CSVline = sum(1 for _ in n)
     print(CSVline, "items loaded from csv file items.txt")
 
+
 def show_menu():
     menu = '''
 Menu:
@@ -17,7 +18,7 @@ Q - Quit'''
 
 while True:
     show_menu()
-    userinput = input(">>>").lower()
+    userinput = str(input(">>>").lower())
     file = open("items.txt", "r")
     if userinput == "r":
 
@@ -25,14 +26,13 @@ while True:
         price = 0
         for line in file:
             x = line.split(",")
-
             price += float(x[1])
-            print("{}. {} ${} ({})".format(count, x[0], float(x[1]), x[2]))
+            print("{}.{}      ${}({})".format(count, x[0], float(x[1]), x[2]))
             count += 1
         if count == 0:
             print("No required items")
         else:
-            print("Total expected price for", CSVline ,"items ${}".format(price))
+            print("Total expected price for", CSVline, "items ${}".format(price))
     elif userinput == "c":
         count = 0
         price = 0
@@ -44,11 +44,64 @@ while True:
                 x = line.split(",")
                 price += float(x[1])
                 count += 1
-                print("{}. {} ${} ({})".format(count, x[0], float(x[1]), x[2]))
+                print("{}.{}      ${} ({})".format(count, x[0], float(x[1]), x[2]))
                 print("Total expected price for", CSVline, "items ${}".format(price))
-
     elif userinput == "m":
-        
+        count = 0
+        price = 0
+        for line in file:
+            x = line.split(",")
+            price += float(x[1])
+            print("{}.{}      ${} ({})".format(count, x[0], float(x[1]), x[2]))
+            count += 1
+        print("Total expected price for", CSVline, "items ${}".format(price))
+        mark_input = int(input("Enter the number of an item to mark as completed \n>>>"))
+        while True:
+            if mark_input == 0:
+                print("Fish fingers marked as complete")
+                break
+            elif mark_input == 1:
+                print("Metal detector marked as complete")
+                break
+            elif mark_input == 2:
+                print("Coffee beans marked as complete")
+                break
+            else:
+                print("Invalid must be 0, 1 or 2")
+                mark_input = int(input("Enter the number of an item to mark as completed \n>>>"))
 
+    elif userinput == "a":
 
+        while True:
+            name = str(input("Item name: "))
+            if name == "":
+                print("Input cannot be blank")
+                continue
+            elif name == " ":
+                print("Input cannot be blank")
+                continue
+            break
 
+        while True:
+            try:
+                price = int(input("Price: "))
+            except ValueError:
+                print("Invalid input; enter a valid number")
+                continue
+
+            if price < 0:
+                print("Price must be >= $0")
+                continue
+            break
+
+        while True:
+            try:
+                priority = int(input("Priority: "))
+            except ValueError:
+                print("Invalid input; enter a valid number")
+                continue
+            if priority < 1 or priority > 2:
+                print("Priority must be 1, 2 or 3")
+                continue
+            break
+        print("{} ${} (priority {}) saved to shopping list".format(name, float(price), priority) )
