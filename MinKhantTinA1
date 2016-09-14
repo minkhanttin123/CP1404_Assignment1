@@ -4,28 +4,51 @@ with open('items.txt') as n:
     CSVline = sum(1 for _ in n)
     print(CSVline, "items loaded from csv file items.txt")
 
-print('''
+def show_menu():
+    menu = '''
 Menu:
 R - List required items
 C - List completed items
 A - Add new item
 M - Mark an item as completed
-Q - Quit''')
-
+Q - Quit'''
+    print(menu)
 
 
 while True:
+    show_menu()
     userinput = input(">>>").lower()
+    file = open("items.txt", "r")
     if userinput == "r":
-        file = open("items.txt", "r")
-        count = -1
+
+        count = 0
         price = 0
         for line in file:
             x = line.split(",")
-            count += 1
+
             price += float(x[1])
             print("{}. {} ${} ({})".format(count, x[0], float(x[1]), x[2]))
-    if count == -1:
-        print("No required items")
-    else:
-        print("Total expected price for", CSVline ,"items ${}".format(price))
+            count += 1
+        if count == 0:
+            print("No required items")
+        else:
+            print("Total expected price for", CSVline ,"items ${}".format(price))
+    elif userinput == "c":
+        count = 0
+        price = 0
+        if count == 0:
+            print("No items completed")
+
+        else:
+            for line in file:
+                x = line.split(",")
+                price += float(x[1])
+                count += 1
+                print("{}. {} ${} ({})".format(count, x[0], float(x[1]), x[2]))
+                print("Total expected price for", CSVline, "items ${}".format(price))
+
+    elif userinput == "m":
+        
+
+
+
