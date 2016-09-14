@@ -1,11 +1,19 @@
-print("Welcome to shopping list 1.0 by Min Khant Tin")
+''''Min Khant Tin
+    15/9/1016
+    This a shopping list program which you can add, list, mark and see the items you need to shop
+    https://github.com/minkhanttin123/CP1404_Assignment1/blob/master/MinKhantTinA1'''
 
-with open('items.txt') as n:
+""""""
+
+
+print("Welcome to shopping list 1.0 by Min Khant Tin") #Welcome the user
+
+with open('items.txt') as n:  #Load and show how many items loaded from csv file
     CSVline = sum(1 for _ in n)
     print(CSVline, "items loaded from csv file items.txt")
 
 
-def show_menu():
+def show_menu(): #Function for showing the menu bar
     menu = '''
 Menu:
 R - List required items
@@ -16,24 +24,24 @@ Q - Quit'''
     print(menu)
 
 
-while True:
+while True: #Start of the while loop
     show_menu()
-    userinput = str(input(">>>").lower())
+    userinput = str(input(">>>").lower()) #change the cap letters to small
     file = open("items.txt", "r")
-    if userinput == "r":
+    if userinput == "r":    #user can see the require item
 
         count = 0
         price = 0
         for line in file:
             x = line.split(",")
             price += float(x[1])
-            print("{}.{}      ${}({})".format(count, x[0], float(x[1]), x[2]))
+            print("{}.{}      ${}({})".format(count, x[0], float(x[1]), x[2])) #formatting of the csv list
             count += 1
         if count == 0:
             print("No required items")
         else:
-            print("Total expected price for", CSVline, "items ${}".format(price))
-    elif userinput == "c":
+            print("Total expected price for", CSVline, "items ${}".format(price)) #show the total price of the items
+    elif userinput == "c":  #to check which items are completed
         count = 0
         price = 0
         if count == 0:
@@ -46,7 +54,7 @@ while True:
                 count += 1
                 print("{}.{}      ${} ({})".format(count, x[0], float(x[1]), x[2]))
                 print("Total expected price for", CSVline, "items ${}".format(price))
-    elif userinput == "m":
+    elif userinput == "m":  #To mark the items
         count = 0
         price = 0
         for line in file:
@@ -70,9 +78,9 @@ while True:
                 print("Invalid must be 0, 1 or 2")
                 mark_input = int(input("Enter the number of an item to mark as completed \n>>>"))
 
-    elif userinput == "a":
+    elif userinput == "a": #To add new items to shopping list
 
-        while True:
+        while True: #Error check method for name
             name = str(input("Item name: "))
             if name == "":
                 print("Input cannot be blank")
@@ -82,7 +90,7 @@ while True:
                 continue
             break
 
-        while True:
+        while True: #Error check method for price
             try:
                 price = int(input("Price: "))
             except ValueError:
@@ -94,7 +102,7 @@ while True:
                 continue
             break
 
-        while True:
+        while True: #Error check method for priority
             try:
                 priority = int(input("Priority: "))
             except ValueError:
@@ -106,7 +114,7 @@ while True:
             break
         print("{} ${} (priority {}) saved to shopping list".format(name, float(price), priority) )
 
-    elif userinput == "q":
+    elif userinput == "q": #To quit the shopping list programming
         print("Items saved to items.csv \nHave a nice day :)")
         break
     else: print("Invalid")
