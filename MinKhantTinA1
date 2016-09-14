@@ -105,3 +105,26 @@ while True:
                 continue
             break
         print("{} ${} (priority {}) saved to shopping list".format(name, float(price), priority) )
+
+    elif userinput == "q":
+        print("Items saved to items.csv \nHave a nice day :)")
+        break
+    else: print("Invalid")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
